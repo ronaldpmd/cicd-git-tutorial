@@ -1,6 +1,10 @@
 name: Super-Linter
 
-on: push
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   super-lint:
@@ -15,6 +19,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          # Full git history is needed for linting only changed files
           fetch-depth: 0
 
       - name: Run Super-Linter
@@ -22,5 +27,13 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_CHECKOV: false
+          # Only validate the languages you are actually using
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_PYTHON_FLAKE8: true
+          VALIDATE_YAML: true
+          VALIDATE_JSON: true
+          # Note: We often set SQL validation to false here because
+          # standard SQL linters struggle with Dataform's .sqlx format.
+          VALIDATE_SQL: false
+          # Keeps the logs cleaner
           VALIDATE_MARKDOWN_PRETTIER: false
