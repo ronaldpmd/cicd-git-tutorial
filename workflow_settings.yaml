@@ -1,0 +1,5 @@
+dataformCoreVersion: 3.0.55
+defaultProject: pmduk-hnm-finance-dashboard
+defaultLocation: europe-west2
+defaultDataset: dataform
+defaultAssertionDataset: dataform_assertions
