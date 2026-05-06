@@ -1,0 +1,7 @@
+[sqlfluff]
+templater = dataform
+dialect = bigquery
+sql_file_exts = .sql,.sqlx
+
+[sqlfluff:indentation]
+tab_space_size = 2
