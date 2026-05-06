@@ -1,9 +1,0 @@
-config {
-  type: "view",
-  name: "v_local_dev_success"
-}
-
-SELECT 
-  "Ronald" as developer,
-  "London" as location,
-  CURRENT_TIMESTAMP() as setup_completed_at

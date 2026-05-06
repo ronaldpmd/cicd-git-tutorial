@@ -1,5 +1,14 @@
+# The version of the Dataform Core framework to use for this project.
 dataformCoreVersion: 3.0.55
+
+# The default Google Cloud Project ID for BigQuery execution.
 defaultProject: pmduk-hnm-finance-dashboard
+
+# The default BigQuery location for datasets (e.g., London).
 defaultLocation: europe-west2
-defaultDataset: dataform
-defaultAssertionDataset: dataform_assertions
+
+# The default dataset where tables and views will be created.
+defaultDataset: test
+
+# The dataset used to store data quality assertion results.
+defaultAssertionDataset: test_assertions

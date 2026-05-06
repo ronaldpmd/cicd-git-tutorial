@@ -1,0 +1,8 @@
+config {
+  type: "view",
+  description: "Performance metrics for CM360 marketing campaigns"
+}
+
+SELECT *
+FROM
+  ${ref("gld_cm360_performance")}
