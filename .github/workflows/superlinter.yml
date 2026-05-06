@@ -27,13 +27,12 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Only validate the languages you are actually using
-          VALIDATE_ALL_CODEBASE: false
+          # 1. Turn off the "check everything" behavior
+          VALIDATE_ALL_CODEBASE: false 
+          
+          # 2. ONLY list what you want to be TRUE. 
+          # Remove any lines that say "= false" to satisfy the error.
           VALIDATE_PYTHON_FLAKE8: true
           VALIDATE_YAML: true
           VALIDATE_JSON: true
-          # Note: We often set SQL validation to false here because
-          # standard SQL linters struggle with Dataform's .sqlx format.
-          VALIDATE_SQL: false
-          # Keeps the logs cleaner
-          VALIDATE_MARKDOWN_PRETTIER: false
+          VALIDATE_JAVASCRIPT_ESLINT: true
