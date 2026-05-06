@@ -1,0 +1,10 @@
+config { type: "table" }
+
+SELECT
+  id,
+  amount,
+  status
+FROM
+  ${ref("stg_transactions")}
+WHERE
+  status = "SUCCESS"

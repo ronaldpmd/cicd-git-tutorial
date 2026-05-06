@@ -1,0 +1,10 @@
+config {
+  type: "view",
+  description: "Reconciles internal transactions against bank statements",
+  columns: {
+    transaction_id: "Unique ID for the transaction",
+    status: "Reconciliation status: MATCH, DISCREPANCY, or MISSING"
+  }
+}
+
+select * from ${ref("test")}

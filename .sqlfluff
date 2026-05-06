@@ -1,7 +1,24 @@
 [sqlfluff]
-templater = dataform
 dialect = bigquery
-sql_file_exts = .sql,.sqlx
+templater = dataform
+# This ensures it ignores Dataform-specific syntax it doesn't understand
+ignore = templating
 
-[sqlfluff:indentation]
-tab_space_size = 2
+[sqlfluff:indent]
+tab_width = 2
+
+[sqlfluff:rules:capitalisation.keywords]
+# This forces SELECT, FROM, AS, etc. to be UPPERCASE
+capitalisation_policy = upper
+
+[sqlfluff:rules:capitalisation.identifiers]
+# This ensures unquoted identifiers stay lowercase (standard for BQ)
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:aliasing.column]
+# Forces you to use 'AS' for column aliases
+aliasing = explicit
+
+[sqlfluff:layout:type:comma]
+# Puts the comma at the end of the line, not the start
+line_position = trailing

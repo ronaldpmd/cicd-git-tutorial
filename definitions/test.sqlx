@@ -1,8 +1,50 @@
 config {
   type: "view",
-  description: "Performance metrics for CM360 marketing campaigns"
+  description: "Reconciles internal transactions against bank statements",
+  columns: {
+    transaction_id: "Unique ID for the transaction",
+    status: "Reconciliation status: MATCH, DISCREPANCY, or MISSING"
+  }
 }
 
-SELECT *
+WITH internal_ledger AS (
+    SELECT
+        101 AS id,
+        500.00 AS amount,
+        'GBP' AS currency
+    UNION ALL
+    SELECT
+        102 AS id,
+        1250.50 AS amount,
+        'GBP' AS currency
+    UNION ALL
+    SELECT
+        103 AS id,
+        75.00 AS amount,
+        'GBP' AS currency
+),
+
+bank_statement AS (
+    SELECT
+        101 AS id,
+        500.00 AS amount
+    UNION ALL
+    SELECT
+        102 AS id,
+        1250.00 AS amount -- Notice the 0.50 discrepancy here!
+)
+
+SELECT
+    ledger.id AS transaction_id,
+    ledger.amount AS ledger_amount,
+    bank.amount AS bank_amount,
+    CASE
+        WHEN ledger.amount = bank.amount THEN 'MATCH'
+        WHEN bank.id IS NULL THEN 'MISSING_IN_BANK'
+        ELSE 'DISCREPANCY'
+    END AS recon_status
 FROM
-  ${ref("gld_cm360_performance")}
+    internal_ledger AS ledger
+LEFT JOIN
+    bank_statement AS bank
+    ON ledger.id = bank.id

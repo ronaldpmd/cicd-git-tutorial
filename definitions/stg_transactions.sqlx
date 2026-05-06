@@ -1,0 +1,10 @@
+config { type: "table" }
+
+SELECT
+    101 AS id, 500 AS amount,
+    'SUCCESS' AS status
+UNION ALL
+SELECT
+    102 AS id,
+    1000 AS amount,
+    'PENDING' AS `status`
