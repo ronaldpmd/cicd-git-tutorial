@@ -2,7 +2,7 @@
 dataformCoreVersion: 3.0.55
 
 # The default Google Cloud Project ID for BigQuery execution.
-defaultProject: pmduk-hnm-finance-dashboard
+defaultProject: ronalds-sandbox-project
 
 # The default BigQuery location for datasets (e.g., London).
 defaultLocation: EU
