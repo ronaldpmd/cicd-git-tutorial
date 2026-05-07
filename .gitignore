@@ -1,6 +1,11 @@
+# Dependencies
 node_modules/
 .venv/
+__pycache__/
+
+# Credentials
 .gcloud/
-# If you ever create a local creds file:
 .df-credentials.json
-package-lock.json
+
+# Local Dataform state (optional but recommended)
+.dataform/
